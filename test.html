@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RAFINO - Retired Army Finance Organization</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #f7f9fc;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ================= HEADER ================= */
+        header {
+            background: #fff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 14px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 22px;
+            color: #1e3a8a;
+        }
+
+        nav a {
+            margin: 0 12px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .auth-buttons a {
+            margin-left: 10px;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        .login {
+            background: #1e3a8a;
+            color: #fff;
+        }
+
+        .forgot {
+            border: 1px solid #1e3a8a;
+            color: #1e3a8a;
+        }
+
+        /* ================= HERO ================= */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1603985529862-9e12198c9a60') center/cover no-repeat;
+            height: 420px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 600px;
+            margin-left: 80px;
+            color: #fff;
+        }
+
+        .hero-content h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            margin-top: 25px;
+        }
+
+        .hero-buttons a {
+            padding: 12px 18px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-right: 10px;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #22c55e;
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background: #fff;
+            color: #111;
+        }
+
+        /* ================= NOTICES ================= */
+        .notice {
+            background: #fff7ed;
+            border-left: 5px solid #f59e0b;
+            padding: 14px 20px;
+            margin: 30px 60px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .login-alert {
+            background: #5fae8b;
+            color: #fff;
+            margin: 0 60px 30px;
+            padding: 14px 20px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .login-alert a {
+            background: #fff;
+            color: #14532d;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        /* ================= CONTENT ================= */
+        .content {
+            background: #fff;
+            padding: 40px 60px;
+            margin: 0 60px 40px;
+            border-radius: 10px;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            background: #1e3a8a;
+            color: #fff;
+            padding: 50px 60px 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 30px;
+        }
+
+        .footer-grid h4 {
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .footer-grid p,
+        .footer-grid a {
+            font-size: 13px;
+            opacity: 0.9;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .hero-content {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+
+            .notice,
+            .login-alert,
+            .content {
+                margin: 20px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">RAFINO</div>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Join Rafino</a>
+        <a href="#">Reunions</a>
+        <a href="#">About Us</a>
+    </nav>
+    <div class="auth-buttons">
+        <a href="#" class="login">Login</a>
+        <a href="#" class="forgot">Forgot Password</a>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Welcome to RAFINO</h1>
+        <p>The Retired Army Finance Organization – Serving those who served</p>
+
+        <div class="hero-buttons">
+            <a href="#" class="btn-primary">Join Our Community</a>
+            <a href="#" class="btn-secondary">About Us</a>
+        </div>
+    </div>
+</section>
+
+<div class="notice">
+    <strong>Reunion 2024 is over and done!</strong><br>
+    Look for further details on Reunion 2026 in the future!
+</div>
+
+<div class="login-alert">
+    <span>Logging In: You must login if you want to use the features of the website.</span>
+    <a href="#">Login In Now →</a>
+</div>
+
+<section class="content">
+    <p>
+        The Lifetime and $12.00 annual dues are used to defray the administrative costs associated with the organizational requirements to maintain and periodically distribute a roster and periodic hard copy newsletter, maintain a current web page on the internet, and purchase office supplies like paper, envelopes, stamps and the like.
+    </p>
+    <br>
+    <p>
+        Reunions conducted every year are planned to be self-funded. Excess earnings are distributed to approved tax-exempt veterans organizations.
+    </p>
+</section>
+
+<footer>
+    <div class="footer-grid">
+        <div>
+            <h4>RAFINO</h4>
+            <p>Retired Army Finance Organization</p>
+            <p>Address: Plano, TX</p>
+            <p>Contact: 123-456-7890</p>
+        </div>
+
+        <div>
+            <h4>Quick Links</h4>
+            <a href="#">Application Form</a>
+            <a href="#">Dues</a>
+            <a href="#">Reunion 24/25</a>
+            <a href="#">Future Reunions</a>
+        </div>
+
+        <div>
+            <h4>Members</h4>
+            <a href="#">Birthdays</a>
+            <a href="#">Find a Member</a>
+            <a href="#">News</a>
+        </div>
+
+        <div>
+            <h4>Support</h4>
+            <a href="#">About Us</a>
+            <a href="#">FAQ's</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2025 RAFINO. All Rights Reserved.
+    </div>
+</footer>
+
+</body>
+</html>
+

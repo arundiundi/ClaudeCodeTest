@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tic Tac Toe</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh; background: #1a1a2e; color: #eee;
+    flex-direction: column; gap: 24px;
+  }
+  h1 { font-size: 2rem; letter-spacing: 2px; }
+  #status {
+    font-size: 1.3rem; min-height: 1.6em;
+    transition: color 0.3s;
+  }
+  #board {
+    display: grid; grid-template-columns: repeat(3, 120px);
+    grid-template-rows: repeat(3, 120px); gap: 6px;
+  }
+  .cell {
+    background: #16213e; border: none; border-radius: 8px;
+    font-size: 3rem; font-weight: 700; color: #eee;
+    cursor: pointer; transition: background 0.2s, transform 0.1s;
+  }
+  .cell:hover:not(.taken) { background: #1a3a5c; transform: scale(1.05); }
+  .cell.taken { cursor: default; }
+  .cell.x { color: #e94560; }
+  .cell.o { color: #0f9b8e; }
+  .cell.win { background: #2a2a5a; animation: pulse 0.6s ease-in-out infinite alternate; }
+  @keyframes pulse { to { background: #3a3a7a; } }
+  #restart {
+    padding: 10px 32px; font-size: 1rem; border: 2px solid #e94560;
+    background: transparent; color: #e94560; border-radius: 6px;
+    cursor: pointer; transition: background 0.2s, color 0.2s;
+  }
+  #restart:hover { background: #e94560; color: #fff; }
+</style>
+</head>
+<body>
+<h1>Tic Tac Toe</h1>
+<div id="status">Your turn (X)</div>
+<div id="board"></div>
+<button id="restart">Restart</button>
+<script>
+const board = document.getElementById('board');
+const status = document.getElementById('status');
+const restartBtn = document.getElementById('restart');
+const wins = [
+  [0,1,2],[3,4,5],[6,7,8],
+  [0,3,6],[1,4,7],[2,5,8],
+  [0,4,8],[2,4,6]
+];
+let cells, state, gameOver;
+
+function init() {
+  board.innerHTML = '';
+  state = Array(9).fill('');
+  gameOver = false;
+  status.textContent = 'Your turn (X)';
+  cells = [];
+  for (let i = 0; i < 9; i++) {
+    const btn = document.createElement('button');
+    btn.className = 'cell';
+    btn.addEventListener('click', () => playerMove(i));
+    board.appendChild(btn);
+    cells.push(btn);
+  }
+}
+
+function checkWin(mark) {
+  return wins.find(combo => combo.every(i => state[i] === mark));
+}
+
+function playerMove(i) {
+  if (gameOver || state[i]) return;
+  place(i, 'X');
+  const w = checkWin('X');
+  if (w) return endGame('You win!', w);
+  if (state.every(c => c)) return endGame("It's a draw!");
+  status.textContent = 'AI thinking...';
+  setTimeout(aiMove, 300);
+}
+
+function aiMove() {
+  const i = bestMove();
+  place(i, 'O');
+  const w = checkWin('O');
+  if (w) return endGame('AI wins!', w);
+  if (state.every(c => c)) return endGame("It's a draw!");
+  status.textContent = 'Your turn (X)';
+}
+
+function place(i, mark) {
+  state[i] = mark;
+  cells[i].textContent = mark;
+  cells[i].classList.add('taken', mark.toLowerCase());
+}
+
+function endGame(msg, combo) {
+  gameOver = true;
+  status.textContent = msg;
+  if (combo) combo.forEach(i => cells[i].classList.add('win'));
+}
+
+function bestMove() {
+  let best = -Infinity, move = -1;
+  for (let i = 0; i < 9; i++) {
+    if (state[i]) continue;
+    state[i] = 'O';
+    const score = minimax(false);
+    state[i] = '';
+    if (score > best) { best = score; move = i; }
+  }
+  return move;
+}
+
+function minimax(isMax) {
+  if (checkWin('O')) return 1;
+  if (checkWin('X')) return -1;
+  if (state.every(c => c)) return 0;
+  let best = isMax ? -Infinity : Infinity;
+  for (let i = 0; i < 9; i++) {
+    if (state[i]) continue;
+    state[i] = isMax ? 'O' : 'X';
+    const score = minimax(!isMax);
+    state[i] = '';
+    best = isMax ? Math.max(best, score) : Math.min(best, score);
+  }
+  return best;
+}
+
+restartBtn.addEventListener('click', init);
+init();
+</script>
+</body>
+</html>
